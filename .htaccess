@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /urun/
+RewriteRule ^$ index.php [L]
+RewriteRule ^productDetail.php/([0-9]+)$ /urun/productDetail.php?id=$1 [L,QSA]
+RewriteRule ^basket$ basket.php [L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
