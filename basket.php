@@ -1,9 +1,16 @@
 <?php include "FrontPartials/Header.php"; ?>
 <?php 
+    require_once 'Core.php';
+    $core = new Core();
+    $userID = $core ->SessionTimeAndLoginControl();
+    if($userID == 0){
+        header('location:/urun/login');
+    }
     try {
         $query = $conn->prepare("
         SELECT 
         basket.*, 
+        p.Id as ProductId,
         p.Name as ProductName, 
         p.Description as ProductDescription, 
         p.Image as ProductImage,
@@ -14,14 +21,37 @@
         INNER JOIN 
             product p ON basket.ProductId = p.Id
         WHERE 
-            basket.UserId = :userId;");
+            basket.UserId = :userId and basket.Status = 1;");
 
-        $query->execute(['userId' => 2]);
+        $query->execute(['userId' => $userID]);
         $basket = $query->fetchAll(PDO::FETCH_ASSOC); 
 
     } catch (PDOException $e) {
         echo "Sorgu hatası: " . $e->getMessage();
     }
+
+    $generalTotalPrice = 0;
+    foreach($basket as $item){
+        $generalTotalPrice += $item["Quantity"] * (isset($item["ProductSalePrice"]) ? $item["ProductSalePrice"] : $item["ProductPrice"]);
+    }
+
+    ob_start();
+
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];        
+        $sqlUpdateBasket = "UPDATE Basket SET Status = 0 WHERE Id = :basketId";
+        $stmtUpdateBasket = $conn->prepare($sqlUpdateBasket);
+        $stmtUpdateBasket->bindParam(':basketId', $id, PDO::PARAM_INT);
+        $stmtUpdateBasket->execute();
+        ?>
+        <script>
+            window.location.href = '/urun/basket';
+        </script>
+        <?php
+        exit;
+    }
+    
+    ob_end_flush();
 ?>
 <div role="main" class="main shop pb-4">
 <div class="container">
@@ -54,7 +84,7 @@
                             <tr class="cart_table_item">
                                 <td class="product-thumbnail">
                                     <div class="product-thumbnail-wrapper">
-                                        <a href="#" class="product-thumbnail-remove" title="Remove Product">
+                                        <a href="/urun/basket?id=<?php echo $item['Id']; ?>" class="product-thumbnail-remove" title="Remove Product">
                                             <i class="fas fa-times"></i>
                                         </a>
                                         <a href="shop-product-sidebar-right.html" class="product-thumbnail-image" title="Photo Camera">
@@ -70,13 +100,14 @@
                                 </td>
                                 <td class="product-quantity">
                                     <div class="quantity float-none m-0">
-                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, -1)" class="minus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="-">
-                                        <input type="text" onchange="updateQuantity(<?php echo $item['Id']; ?>, this.value)" class="input-text qty text" title="Qty" value="<?php echo $item['Quantity']; ?>" name="quantity" min="1" step="1">
-                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, 1)" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
+                                    <!-- onchange="updateQuantity(<?php echo $item['Id']; ?>, this.value, <?php echo $item['ProductId']; ?>)" -->
+                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, -1, <?php echo $item['ProductId']; ?>)" class="minus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="-">
+                                        <input type="text" class="input-text qty text" title="Qty" disabled value="<?php echo $item['Quantity']; ?>" name="quantity" min="1" step="1">
+                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, 1, <?php echo $item['ProductId']; ?>)" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
                                     </div>
                                 </td>
                                 <td class="product-subtotal text-end">
-                                    <span class="amount text-color-dark font-weight-bold text-4"><?php echo $item['ProductSalePrice'] * $item['Quantity']; ?>₺</span>
+                                    <span id="totalPrice<?php echo $item['Id']; ?>" class="amount text-color-dark font-weight-bold text-4"><?php echo $item['ProductSalePrice'] * $item['Quantity']; ?>₺</span>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -88,22 +119,22 @@
         <div class="col-lg-4 position-relative">
             <div class="card border-width-3 border-radius-0 border-color-hover-dark" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}">
                 <div class="card-body">
-                    <h4 class="font-weight-bold text-uppercase text-4 mb-3">Cart Totals</h4>
+                    <h4 class="font-weight-bold text-uppercase text-4 mb-3">Sipariş Toplam:</h4>
                     <table class="shop_table cart-totals mb-4">
                         <tbody>
-                            <tr class="cart-subtotal">
+                            <!-- <tr class="cart-subtotal">
                                 <td class="border-top-0">
-                                    <strong class="text-color-dark">Subtotal</strong>
+                                    <strong class="text-color-dark">Toplam</strong>
                                 </td>
                                 <td class="border-top-0 text-end">
-                                    <strong><span class="amount font-weight-medium">$431</span></strong>
+                                    <strong><span class="amount font-weight-medium"><?php echo $generalTotalPrice; ?>₺</span></strong>
                                 </td>
-                            </tr>
-                            <tr class="shipping">
+                            </tr> -->
+                            <!-- <tr class="shipping">
                                 <td colspan="2">
-                                    <strong class="d-block text-color-dark mb-2">Shipping</strong>
+                                     <strong class="d-block text-color-dark mb-2">Sipariş Bilgileri</strong>
 
-                                    <div class="d-flex flex-column">
+                                     <div class="d-flex flex-column">
                                         <label class="d-flex align-items-center text-color-grey mb-0" for="shipping_method1">
                                             <input id="shipping_method1" type="radio" class="me-2" name="shipping_method" value="free" checked />
                                             Free Shipping
@@ -116,20 +147,20 @@
                                             <input id="shipping_method3" type="radio" class="me-2" name="shipping_method" value="flat-rate" />
                                             Flat Rate: $5.00
                                         </label>
-                                    </div>
+                                    </div> 
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr class="total">
                                 <td>
-                                    <strong class="text-color-dark text-3-5">Total</strong>
+                                    <strong class="text-color-dark text-3-5">Toplam</strong>
                                 </td>
                                 <td class="text-end">
-                                    <strong class="text-color-dark"><span class="amount text-color-dark text-5">$431</span></strong>
+                                    <strong class="text-color-dark"><span id="totalPriceGeneral" class="amount text-color-dark text-5"><?php echo $generalTotalPrice; ?>₺</span></strong>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <a href="shop-checkout.html" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Proceed to Checkout <i class="fas fa-arrow-right ms-2"></i></a>
+                    <a href="/urun/checkout" class="btn btn-dark btn-modern w-100 text-uppercase bg-color-hover-primary border-color-hover-primary border-radius-0 text-3 py-3">Ödeme Ekranına Git <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </div>

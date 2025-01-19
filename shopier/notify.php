@@ -33,3 +33,4 @@ if ($calculated_signature === $received_signature) {
     echo "Hatalı ödeme doğrulaması!";
 }
 ?>
+

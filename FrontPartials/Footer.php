@@ -2,23 +2,23 @@
 				<div class="container">
 					<div class="row py-4 my-5">
 						<div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-							<h5 class="text-4 text-color-light mb-3">CONTACT INFO</h5>
+							<h5 class="text-4 text-color-light mb-3">İletişim Bilgileri</h5>
 							<ul class="list list-unstyled">
 								<li class="pb-1 mb-2">
-									<span class="d-block font-weight-normal line-height-1 text-color-light">ADDRESS</span> 
-									1234 Street Name, City, State, USA
+									<span class="d-block font-weight-normal line-height-1 text-color-light">Adres:</span> 
+									Meltem sk, Ümraniye, İstanbul, Türkiye
 								</li>
 								<li class="pb-1 mb-2">
-									<span class="d-block font-weight-normal line-height-1 text-color-light">PHONE</span>
-									<a href="tel:+1234567890">Toll Free (123) 456-7890</a>
+									<span class="d-block font-weight-normal line-height-1 text-color-light">Tel</span>
+									<a href="tel:+1234567890">0216 444 45</a>
 								</li>
 								<li class="pb-1 mb-2">
-									<span class="d-block font-weight-normal line-height-1 text-color-light">EMAIL</span>
-									<a href="mailto:mail@example.com">mail@example.com</a>
+									<span class="d-block font-weight-normal line-height-1 text-color-light">Mail</span>
+									<a href="mailto:mail@example.com">esport@gmail.com</a>
 								</li>
 								<li class="pb-1 mb-2">
-									<span class="d-block font-weight-normal line-height-1 text-color-light">WORKING DAYS/HOURS </span>
-									Mon - Sun / 9:00AM - 8:00PM
+									<span class="d-block font-weight-normal line-height-1 text-color-light">Çalışma Saatleri </span>
+									Pzt - Cuma / 09:00 - 18:00
 								</li>
 							</ul>
 							<ul class="social-icons social-icons-clean-with-border social-icons-medium">
@@ -34,58 +34,41 @@
 							</ul>
 						</div>
 						<div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
-							<h5 class="text-4 text-color-light mb-3">CUSTOMER SERVICE</h5>
+							<h5 class="text-4 text-color-light mb-3">Sayfalar</h5>
 							<ul class="list list-unstyled mb-0">
-								<li class="mb-0"><a href="contact-us-1.html">Help & FAQs</a></li>
-								<li class="mb-0"><a href="services.html">Order Tracking</a></li>
-								<li class="mb-0"><a href="#">Shipping & Delivery</a></li>
-								<li class="mb-0"><a href="#">Orders History</a></li>
-								<li class="mb-0"><a href="#">Advanced Search</a></li>
-								<li class="mb-0"><a href="#">Login</a></li>
-								<li class="mb-0"><a href="about-us-1.html">Careers</a></li>
-								<li class="mb-0"><a href="#">About Us</a></li>
-								<li class="mb-0"><a href="#">Corporate Sales</a></li>
+								<li class="mb-0"><a href="services.html">Ürünler</a></li>
+								<li class="mb-0"><a href="#">Kayıt Ol</a></li>
+								<li class="mb-0"><a href="#">Giriş</a></li>
 							</ul>
 						</div>
 						<div class="col-md-6 col-lg-3 mb-5 mb-md-0">
-							<h5 class="text-4 text-color-light mb-3">POPULAR TAGS</h5>
+							<h5 class="text-4 text-color-light mb-3">Etiketler</h5>
 							<ul class="list list-unstyled list-inline mb-0">
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">jeans</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">shoes</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">bag</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">jeasn</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">classic</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">black</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">bag</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">white</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">bag</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">bag</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">shoes</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">bag</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">jeans</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">shoes</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">white</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">black</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">white</a></li>
-								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">shoes</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Esport</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Oyun</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Valorant</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Cs2</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Lol</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Sweatshirt</a></li>
+								<li class="list-inline-item"><a href="#" class="badge badge-dark rounded border border-color-light-3 font-weight-normal text-2 p-2">Tshirt</a></li>
 							</ul>
 						</div>
 						<div class="col-md-6 col-lg-3">
-							<h5 class="text-4 text-color-light mb-3">SUBSCRIBE NEWSLETTER</h5>
-							<p class="mb-2">Get all the latest information on events, sales and offers. Sign up for newsletter:</p>
+							<h5 class="text-4 text-color-light mb-3">Mail Bültenimize Abone Olun</h5>
+							<p class="mb-2">Tüm yeniliklerden ve etkinliklerden haberdar olun:</p>
 							<div class="alert alert-success d-none" id="newsletterSuccess">
-								<strong>Success!</strong> You've been added to our email list.
+								<strong>Başarılı!</strong> Abone olundu.
 							</div>
 							<div class="alert alert-danger d-none" id="newsletterError"></div>
 							<form id="newsletterForm" class="form-style-5 opacity-10" action="php/newsletter-subscribe.php" method="POST">
 								<div class="row">
 									<div class="form-group col">
-										<input class="form-control" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text" />
+										<input class="form-control" placeholder="Mail Adresi" name="newsletterEmail" id="newsletterEmail" type="text" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col">
-										<button class="btn btn-primary btn-rounded btn-px-4 btn-py-2 font-weight-bold" type="submit">SUBSCRIBE</button>
+										<button class="btn btn-primary btn-rounded btn-px-4 btn-py-2 font-weight-bold" type="submit">Abone Ol</button>
 									</div>
 								</div>
 							</form>
@@ -96,7 +79,7 @@
 					<div class="footer-copyright footer-copyright-style-2 pt-4 pb-5">
 						<div class="row align-items-center justify-content-md-between">
 							<div class="col-12 col-md-auto text-center text-md-start mb-2 mb-md-0">
-								<p class="mb-0">Porto Template © 2021. All Rights Reserved</p>
+								<p class="mb-0">Samet Yorgun © 2025. Tüm hakları saklıdır.</p>
 							</div>
 							<div class="col-12 col-md-auto">
 								<div class="payment-cc justify-content-center justify-content-md-end">

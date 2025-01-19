@@ -42,7 +42,6 @@ GROUP BY
 }
 
 
-
 try {
     $urunQuery = $conn->prepare("
         SELECT 
@@ -59,7 +58,6 @@ try {
     $urunQuery->execute(['id' => $urunId]);
     $varyasyonlar = $urunQuery->fetchAll(PDO::FETCH_ASSOC);
 
-    // Renk ve beden olarak ayırıyoruz
     $renkler = [];
     $bedenler = [];
     foreach ($varyasyonlar as $varyasyon) {
@@ -74,10 +72,44 @@ try {
     die("Sorgu hatası: " . $e->getMessage());
 }
 
-$urunResimleri = $conn->prepare("SELECT image FROM productimage WHERE ProductId = :id");
+$urunResimleri = $conn->prepare("SELECT * FROM productimage WHERE ProductId = :id");
 $urunResimleri->execute(['id' => $urunId]);
 $urunResimleri = $urunResimleri->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const colorSelect = document.getElementById('color');
+    colorSelect.addEventListener('change', function () {
+        debugger
+        const selectedColor = this.value || 'default';
+        const images = document.querySelectorAll('.product-image');
+        const owlItems = document.querySelectorAll('.owl-item');
+
+        // Tüm resimleri gizle ve `active` sınıfını kaldır
+        // images.forEach(image => {
+        //     image.style.display = 'none';
+        // });
+
+        owlItems.forEach(item => {
+            item.classList.remove('active');
+        });
+
+        // Seçilen renk için uygun resmi göster ve `active` sınıfını ekle
+        const matchingImage = document.querySelector(`.product-image[data-color="${selectedColor}"]`);
+        if (matchingImage) {
+            matchingImage.style.display = 'block';
+
+            // `owl-item` içinde ilgili resmi bul ve `active` sınıfını ekle
+            const matchingOwlItem = matchingImage.closest('.owl-item');
+            if (matchingOwlItem) {
+                matchingOwlItem.classList.add('active');
+            }
+        }
+    });
+});
+
+</script>
 
 <div id="response"></div>
 <div role="main" class="main shop pt-4">
@@ -95,16 +127,19 @@ $urunResimleri = $urunResimleri->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-md-5 mb-5 mb-md-0">
             <div class="thumb-gallery-wrapper">
                 <div class="thumb-gallery-detail owl-carousel owl-theme manual nav-inside nav-style-1 nav-dark mb-3">
-                    <?php foreach ($urunResimleri as $resim): ?>
-                        <div>
-                            <img alt="" class="img-fluid" src="<?php echo $resim['image']; ?>" data-zoom-image="<?php echo $resim['image']; ?>">
-                        </div>
-                    <?php endforeach; ?>
+                    
+                <?php foreach ($urunResimleri as $index => $resim): ?>
+                            <img 
+                                class="product-image" 
+                                data-color="<?php echo !empty($resim['VariationOption']) ? htmlspecialchars($resim['VariationOption']) : 'default'; ?>" 
+                                src="<?php echo htmlspecialchars($resim['Image']); ?>" >
+                        <?php endforeach; ?>
+
                 </div>
                 <div class="thumb-gallery-thumbs owl-carousel owl-theme manual thumb-gallery-thumbs">
                     <?php foreach ($urunResimleri as $resim): ?>
                         <div class="cur-pointer">
-                            <img alt="" class="img-fluid" src="<?php echo $resim['image']; ?>">
+                            <img alt="" class="img-fluid" src="<?php echo $resim['Image']; ?>">
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -114,14 +149,12 @@ $urunResimleri = $urunResimleri->fetchAll(PDO::FETCH_ASSOC);
             <div class="summary entry-summary position-relative">
                 <div class="position-absolute top-0 right-0">
                     <div class="products-navigation d-flex">
-                        <a href="#" class="prev text-decoration-none text-color-dark text-color-hover-primary border-color-hover-primary" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-original-title="Red Ladies Handbag"><i class="fas fa-chevron-left"></i></a>
-                        <a href="#" class="next text-decoration-none text-color-dark text-color-hover-primary border-color-hover-primary" data-bs-toggle="tooltip" data-bs-animation="false" data-bs-original-title="Green Ladies Handbag"><i class="fas fa-chevron-right"></i></a>
                     </div>
 				</div>
                 <h1 class="mb-0 font-weight-bold text-7"><?php echo $urun['Name']; ?></h1>
                 <p class="price mb-3">
                     <span class="sale text-color-dark"><?php echo $urun['SalePrice']; ?>₺</span>
-                    <span class="amount"><?php echo $urun['Price']; ?>₺</span>
+                    <span class="amount text-color-danger"><?php echo $urun['Price']; ?>₺</span>
                 </p>
                 <p class="text-3-5 mb-3"><?php echo $urun['Description']; ?></p>
 
@@ -145,12 +178,12 @@ $urunResimleri = $urunResimleri->fetchAll(PDO::FETCH_ASSOC);
                                 <td class="align-middle text-2 px-0 py-2">RENK:</td>
                                 <td class="px-0 py-2">
                                     <div class="custom-select-1">
-                                        <select name="color" id="color" class="form-control form-select text-1 h-auto py-2">
-                                            <option value="">Lütfen Renk Seçiniz</option>
-                                            <?php foreach ($renkler as $renk): ?>
-                                                <option value="<?php echo $renk; ?>"><?php echo $renk; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <select name="color" id="color" class="form-control form-select text-1 h-auto py-2">
+                                        <option value="">Lütfen Renk Seçiniz</option>
+                                        <?php foreach ($renkler as $renk): ?>
+                                            <option value="<?php echo htmlspecialchars($renk); ?>"><?php echo htmlspecialchars($renk); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                     </div>
                                 </td>
                             </tr>

@@ -16,3 +16,4 @@
 <link rel="stylesheet" href="assets/css/custom.css">
 <link id="skinCSS" rel="stylesheet" href="assets/css/skins/default.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
