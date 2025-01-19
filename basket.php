@@ -70,9 +70,9 @@
                                 </td>
                                 <td class="product-quantity">
                                     <div class="quantity float-none m-0">
-                                        <input type="button" class="minus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="-">
-                                        <input type="text" class="input-text qty text" title="Qty" value="<?php echo $item['Quantity']; ?>" name="quantity" min="1" step="1">
-                                        <input type="button" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
+                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, -1)" class="minus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="-">
+                                        <input type="text" onchange="updateQuantity(<?php echo $item['Id']; ?>, this.value)" class="input-text qty text" title="Qty" value="<?php echo $item['Quantity']; ?>" name="quantity" min="1" step="1">
+                                        <input type="button" onclick="updateQuantity(<?php echo $item['Id']; ?>, 1)" class="plus text-color-hover-light bg-color-hover-primary border-color-hover-primary" value="+">
                                     </div>
                                 </td>
                                 <td class="product-subtotal text-end">

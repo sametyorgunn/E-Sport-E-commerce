@@ -29,3 +29,8 @@ $('#cart-link').on('click', function (event) {
     event.preventDefault();
     window.location.href = '/urun/basket.php';
 });
+
+function updateQuantity(id, quantity) {
+    debugger
+    
+}
