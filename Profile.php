@@ -1,4 +1,4 @@
-<?php include "FrontPartials/Header.php";
+<?php require "FrontPartials/Header.php";
 require_once 'Core.php';
 $core = new Core();
 $userId = $core ->SessionTimeAndLoginControl();
@@ -71,7 +71,7 @@ if(isset($userId)){
 ?>
 <div class="container pt-3 pb-2">
     <div class="row pt-2">
-          <?php include "FrontPartials/Profile/SideBar.php"?>
+          <?php include "FrontPartials/ProfilePartial/SideBar.php"?>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="tab-pane tab-pane-navigation active" id="formsStyleDefault">
                     <h4 class="mb-3">Profilim</h4>

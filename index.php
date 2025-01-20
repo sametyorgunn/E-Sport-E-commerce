@@ -142,7 +142,7 @@ if (isset($_GET["searchBtn"])) {
 								<div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
 								<?php foreach ($products as $product): ?>
                                     <div class="col-sm-6 col-lg-3">
-										<div class="product mb-0">
+										<div class="product mb-0" style="border-radius: 10px; overflow: hidden; border: 1px solid #ddd;">
 											<div class="product-thumb-info border-0 mb-3">
 												<div class="product-thumb-info-badges-wrapper">
                                                     <span class="badge badge-ecommerce badge-success">Yeni</span>

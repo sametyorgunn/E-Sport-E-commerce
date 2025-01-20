@@ -1,4 +1,6 @@
-<?php include "Configuration/connection.php";
+<?php
+require 'Configuration/connection.php'; // Üst dizindeki dosyayı dahil et
+
 session_start();
 ob_start();
 
@@ -39,7 +41,7 @@ $userID = isset($_SESSION["userID"]);
 		<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 		<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-		<?php include "FrontPartials/_Css.php"; ?>
+		<?php require "FrontPartials/_Css.php"; ?>
 	</head>
 	<body data-plugin-page-transition>
 		<div class="body">
